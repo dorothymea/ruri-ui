@@ -1,12 +1,17 @@
 <template>
   <div>
-  <Switch/>
+  <Switch :value="bool" @input="bool = $event"/>
   </div>
 </template>
 
 <script lang="ts">
 import Switch from '../lib/Switch.vue'
+import {ref} from "vue";
 export default {
-  components:{Switch}
+  components:{Switch},
+  setup(){
+    const bool = ref(false)
+    return {bool}
+  }
 }
 </script>
