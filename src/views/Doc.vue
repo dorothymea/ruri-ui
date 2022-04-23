@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TopNav/>
     doc页面
     <div class="topNav">
       <div class="logo"></div>
@@ -11,3 +12,12 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import TopNav from '../components/TopNav.vue'
+export default {
+  components:{
+    TopNav
+  }
+}
+</script>
