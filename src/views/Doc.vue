@@ -24,7 +24,9 @@
           </li>
         </ol>
       </aside>
-      <main>主要内容</main>
+      <main>
+        <router-view/>
+      </main>
     </div>
   </div>
 </template>
