@@ -1,26 +1,29 @@
 <template>
   <template v-if="visible">
-    <div class="ruri-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="ruri-dialog-wrapper">
-      <div class="ruri-dialog">
-        <header>
-          <slot name="title"></slot>
-          <span class="ruri-dialog-close" @click="close"></span>
-        </header>
-        <main>
-          <slot name="content"/>
-        </main>
-        <footer>
-          <Button level="main" @click="confirm">Confirm</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="ruri-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="ruri-dialog-wrapper">
+        <div class="ruri-dialog">
+          <header>
+            <slot name="title"></slot>
+            <span class="ruri-dialog-close" @click="close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="confirm">Confirm</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
 <script lang="ts">
 import Button from "./Button.vue";
+
 export default {
   props:{
     visible:{
