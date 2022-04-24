@@ -1,5 +1,5 @@
 <template>
-    <button class="ruri-button" :class="classes">
+    <button class="ruri-button" :class="classes" :disabled="disabled">
       <slot/>
     </button>
 </template>
@@ -19,6 +19,10 @@ export default {
     level:{
       type:String,
       default:'normal'
+    },
+    disabled:{
+      type:Boolean,
+      default:false
     }
   },
   setup(props){
@@ -42,6 +46,7 @@ $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
 $red:red;
+$grey:grey;
 .ruri-button {
   box-sizing: border-box;
   height: $h;
@@ -150,6 +155,21 @@ $red:red;
       &:focus {
         color: darken($red, 10%);
       }
+    }
+  }
+  &.ruri-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.ruri-theme-link, &.ruri-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
     }
   }
 }
