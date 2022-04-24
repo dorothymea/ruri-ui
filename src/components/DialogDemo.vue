@@ -1,7 +1,15 @@
 <template>
   <h2>Dialog示例</h2>
   <Button @click="toggle">点击弹出对话</Button>
-  <Dialog v-model:visible="x" :close-on-click-overlay="false" :confirm="f1" :cancel="f2"></Dialog>
+  <Dialog v-model:visible="x" :close-on-click-overlay="false" :confirm="f1" :cancel="f2">
+    <template v-slot:content>
+      <strong>hello</strong>
+      <p>world</p>
+    </template>
+    <template v-slot:title>
+      <strong>加粗的标题</strong>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">

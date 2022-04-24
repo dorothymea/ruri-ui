@@ -4,12 +4,11 @@
     <div class="ruri-dialog-wrapper">
       <div class="ruri-dialog">
         <header>
-          标题
+          <slot name="title"></slot>
           <span class="ruri-dialog-close" @click="close"></span>
         </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot name="content"/>
         </main>
         <footer>
           <Button level="main" @click="confirm">Confirm</Button>
