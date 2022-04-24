@@ -1,5 +1,5 @@
 <template>
-    <button class="ruri-button" :class="{[`theme-${theme}`]:theme}">
+    <button class="ruri-button" :class="{[`ruri-theme-${theme}`]:theme}">
       <slot/>
     </button>
 </template>
