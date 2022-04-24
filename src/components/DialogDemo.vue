@@ -1,7 +1,7 @@
 <template>
   <h2>Dialog示例</h2>
   <Button @click="toggle">点击弹出对话</Button>
-  <Dialog v-model:visible="x"></Dialog>
+  <Dialog v-model:visible="x" :close-on-click-overlay="false" :confirm="f1" :cancel="f2"></Dialog>
 </template>
 
 <script lang="ts">
@@ -19,7 +19,9 @@ export default {
     const toggle = () =>{
       x.value = !x.value
     }
-    return {x, toggle}
+    const f1 = () =>{return true}
+    const f2 = () =>{}
+    return {x, toggle,f1,f2}
   }
 }
 </script>
