@@ -1,5 +1,6 @@
 <template>
     <button class="ruri-button" :class="classes" :disabled="disabled">
+      <span v-if="loading" class="ruri-loadingIndicator"></span>
       <slot/>
     </button>
 </template>
@@ -21,6 +22,10 @@ export default {
       default:'normal'
     },
     disabled:{
+      type:Boolean,
+      default:false
+    },
+    loading:{
       type:Boolean,
       default:false
     }
@@ -172,5 +177,20 @@ $grey:grey;
       color: $grey;
     }
   }
+  > .ruri-loadingIndicator{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $blue $blue $blue transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: ruri-spin 1s infinite linear;
+  }
+}
+@keyframes ruri-spin {
+  0%{transform: rotate(0deg)}
+  100%{transform: rotate(360deg)}
 }
 </style>
