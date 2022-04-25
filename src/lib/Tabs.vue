@@ -1,27 +1,37 @@
 <template>
   <div class="ruri-tabs">
     <div class="ruri-tabs-nav">
-      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index">
+      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index" @click="select(t)" :class="{selected:t===selected}">
         {{t}}
       </div>
     </div>
     <div class="ruri-tabs-content">
-      <component class="ruri-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
+      <component class="ruri-tabs-content-item" :is="current" :key="current.props.title"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Tab from '../lib/Tab.vue'
+import {computed} from "vue";
 
 export default {
+  props:{
+    selected:{type:String}
+  },
   setup(props,context){
     const defaults = context.slots.default()
     defaults.forEach((tag) => {
       if(tag.type !== Tab){ throw new Error('Tabs的字标签必须是Tab')}
     })
     const titles = defaults.map((tag) =>{return tag.props.title})
-    return { defaults, titles }
+    const current = computed(()=>{
+      return defaults.find(tag => tag.props.title === props.selected)
+    })
+    const select = (title:String) =>{
+      context.emit('update:selected',title)
+    }
+    return { defaults, titles ,current ,select }
   }
 }
 </script>
