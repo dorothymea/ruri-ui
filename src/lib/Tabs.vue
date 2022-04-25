@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <div v-for="(t,index) in titles" :key="index">
-      {{t}}
+  <div class="ruri-tabs">
+    <div class="ruri-tabs-nav">
+      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index">
+        {{t}}
+      </div>
     </div>
-    <component v-for="(c,index) in defaults" :is="c" :key="index"/>
+    <div class="ruri-tabs-content">
+      <component class="ruri-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
+    </div>
   </div>
 </template>
 
@@ -21,3 +25,34 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+$blue: #40a9ff;
+$color: #333;
+$border-color: #d9d9d9;
+.ruri-tabs {
+  &-nav {
+    display: flex;
+    color: $color;
+    border-bottom: 1px solid $border-color;
+
+    &-item {
+      padding: 8px 0;
+      margin: 0 16px;
+      cursor: pointer;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.selected {
+        color: $blue;
+      }
+    }
+  }
+
+  &-content {
+    padding: 8px 0;
+  }
+}
+</style>
