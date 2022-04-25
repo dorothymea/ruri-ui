@@ -1,7 +1,7 @@
 <template>
   <div class="ruri-tabs">
     <div class="ruri-tabs-nav" ref="container">
-      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index" @click="select(t)" :class="{selected:t===selected}" :ref="el=> {if(el) navItems[index]=el}">
+      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index" @click="select(t)" :class="{selected:t===selected}" :ref="el=> {if(t === selected) selectedItem = el}">
         {{t}}
       </div>
       <div class="ruri-tabs-nav-indicator" ref="indicator"></div>
@@ -21,17 +21,15 @@ export default {
     selected:{type:String}
   },
   setup(props,context){
-    const navItems  = ref<HTMLDivElement[]>([])
+    const selectedItem = ref<HTMLDivElement>(null)
     const indicator = ref<HTMLDivElement>(null)
     const container = ref<HTMLDivElement>(null)
 
     const x = () => {
-      const divs = navItems.value
-      const result = divs.filter(div => div.classList.contains('selected'))[0]
-      const {width} = result.getBoundingClientRect()
+      const {width} = selectedItem.value.getBoundingClientRect()
       indicator.value.style.width = width + 10 + 'px'
       const {left:left1} = container.value.getBoundingClientRect()
-      const {left:left2} = result.getBoundingClientRect()
+      const {left:left2} = selectedItem.value.getBoundingClientRect()
       const left = left2 - left1
       indicator.value.style.left = left - 5 + 'px'
     }
@@ -51,7 +49,7 @@ export default {
     const select = (title:String) =>{
       context.emit('update:selected',title)
     }
-    return { defaults, titles ,current ,select , navItems, indicator,container}
+    return { defaults, titles ,current ,select , selectedItem, indicator,container}
   }
 }
 </script>
