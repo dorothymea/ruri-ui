@@ -1,7 +1,7 @@
 <template>
   <div class="ruri-tabs">
     <div class="ruri-tabs-nav" ref="container">
-      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index" @click="select(t)" :class="{selected:t===selected}" :ref="el=> {if(t === selected) selectedItem = el}">
+      <div class="ruri-tabs-nav-item" v-for="(t,index) in titles" :key="index" @click="select(t)" :class="{selected:t===selected}" :ref="el=> {if(t === selected) selectedItem= el}">
         {{t}}
       </div>
       <div class="ruri-tabs-nav-indicator" ref="indicator"></div>
@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Tab from '../lib/Tab.vue'
-import {computed, onMounted, onUpdated, ref} from "vue";
+import {computed, onMounted, ref, watchEffect} from "vue";
 
 export default {
   props:{
@@ -25,18 +25,16 @@ export default {
     const indicator = ref<HTMLDivElement>(null)
     const container = ref<HTMLDivElement>(null)
 
-    const x = () => {
-      const {width} = selectedItem.value.getBoundingClientRect()
-      indicator.value.style.width = width + 10 + 'px'
-      const {left:left1} = container.value.getBoundingClientRect()
-      const {left:left2} = selectedItem.value.getBoundingClientRect()
-      const left = left2 - left1
-      indicator.value.style.left = left - 5 + 'px'
-    }
-
-    onMounted(x)
-    onUpdated(x)
-
+    onMounted(()=>{
+      watchEffect(()=>{
+        const {width} = selectedItem.value.getBoundingClientRect()
+        indicator.value.style.width = width + 10 + 'px'
+        const {left:left1} = container.value.getBoundingClientRect()
+        const {left:left2} = selectedItem.value.getBoundingClientRect()
+        const left = left2 - left1
+        indicator.value.style.left = left - 5 + 'px'
+      })
+    })
 
     const defaults = context.slots.default()
     defaults.forEach((tag) => {
