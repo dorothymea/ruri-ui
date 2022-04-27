@@ -2,7 +2,7 @@
   <div>
     <h1>Switch 组件示例 </h1>
     <div class="demo">
-      <h2>常规用法</h2>
+      <h2>普通Switch</h2>
       <div class="demo-component">
         <Item1/>
       </div>
@@ -10,11 +10,11 @@
         <Button>查看代码</Button>
       </div>
       <div class="demo-code">
-        <pre>&lt;Switch v-model:value="bool" /&gt;</pre>
+        <pre>{{Item1.__sourceCode}}</pre>
       </div>
   </div>
     <div class="demo">
-      <h2>支持 disabled </h2>
+      <h2>禁用Switch</h2>
       <div class="demo-component">
         <Item2/>
       </div>
@@ -22,7 +22,7 @@
         <Button>查看代码</Button>
       </div>
       <div class="demo-code">
-        <pre>&lt;Switch v-model:value="bool" disabled /&gt;</pre>
+        <pre>{{Item2.__sourceCode}}</pre>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ export default {
   components:{ Switch, Button, Item1, Item2},
   setup(){
     const bool = ref(false)
-    return {bool}
+    return {bool,Item1,Item2}
   }
 }
 </script>

@@ -1,3 +1,5 @@
+<demo>禁用Switch</demo>
+
 <template>
   <Switch v-model:value="bool" disabled/>
 </template>
