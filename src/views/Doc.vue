@@ -77,6 +77,7 @@ export default {
   > main {
     flex-grow: 1;
     padding: 16px;
+    max-width: 100%;
   }
 }
 aside {
@@ -105,8 +106,5 @@ aside {
       }
     }
   }
-main{
-  overflow: auto;
-}
 }
 </style>

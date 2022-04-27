@@ -30,3 +30,7 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+html,body,#app{
+  width: 100%;
+  overflow-x: hidden;
+}
