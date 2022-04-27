@@ -4,7 +4,7 @@
     <div class="demo">
       <h2>普通Switch</h2>
       <div class="demo-component">
-        <Item1/>
+        <component :is="Item1"/>
       </div>
       <div class="demo-actions">
         <Button>查看代码</Button>
@@ -16,7 +16,7 @@
     <div class="demo">
       <h2>禁用Switch</h2>
       <div class="demo-component">
-        <Item2/>
+        <component :is="Item2"/>
       </div>
       <div class="demo-actions">
         <Button>查看代码</Button>
