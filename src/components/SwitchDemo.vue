@@ -9,7 +9,7 @@
 <script lang="ts">
 import Item1 from './SwitchItems/item1.vue'
 import Item2 from './SwitchItems/item2.vue'
-import Content from './SwitchItems/Content.vue'
+import Content from './Content.vue'
 
 export default {
   components:{ Content},
