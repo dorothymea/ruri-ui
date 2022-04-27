@@ -1,38 +1,39 @@
 <template>
-  <div>
-    <h1>Switch 组件示例 </h1>
-    <Content :component="Item1"/>
-    <Content :component="Item2"/>
+  <div class="content">
+    <h2>{{component.__sourceCodeTitle}}</h2>
+    <div class="content-component">
+      <component :is="component"/>
+    </div>
+    <div class="content-action">
+      <Button>查看代码</Button>
+    </div>
+    <div class="content-code">
+      <pre class="language-html" v-html="Prism.highlight(component.__sourceCode, Prism.languages.html, 'html')" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Switch from '../lib/Switch.vue'
-import Button from '../lib/Button.vue'
-import Item1 from './SwitchItems/item1.vue'
-import Item2 from './SwitchItems/item2.vue'
-import Content from './SwitchItems/Content.vue'
-import {ref} from "vue";
+import Button from '../../lib/Button.vue'
 import 'prismjs';
 import 'prismjs/themes/prism.css'
 const Prism = (window as any).Prism
-
 export default {
-  components:{ Switch, Button, Content},
+  components:{Button},
+  props:{
+    component: Object
+  },
   setup(){
-    const bool = ref(false)
-    return { bool, Item1, Item2, Prism }
+    return { Prism }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
-
-.demo {
+.content {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
-
   >h2 {
     font-size: 20px;
     padding: 8px 16px;
@@ -43,7 +44,7 @@ $border-color: #d9d9d9;
     padding: 16px;
   }
 
-  &-actions {
+  &-action {
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
   }
