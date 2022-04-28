@@ -12,8 +12,8 @@
             <slot name="content"/>
           </main>
           <footer>
-            <Button level="main" @click="confirm">Confirm</Button>
-            <Button @click="cancel">Cancel</Button>
+            <Button level="main" @click="confirm">确定</Button>
+            <Button @click="cancel">取消</Button>
           </footer>
         </div>
       </div>
