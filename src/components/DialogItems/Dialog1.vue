@@ -2,7 +2,7 @@
 
 <template>
   <Button @click="toggle">点击弹出对话</Button>
-  <Dialog v-model:visible="dialogVisible" :close-on-click-overlay="false" :confirm="f1" :cancel="f2">
+  <Dialog v-model:visible="dialogVisible" :close-on-click-overlay="false" :confirm="confirmFn" :cancel="cancelFn">
     <template v-slot:content>
       hello
       <p>world</p>
